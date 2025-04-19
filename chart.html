@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %}Stock Chart{% endblock %}
+
+{% block content %}
+    <head>
+        <title>Stock Chart</title>
+        <style>
+            .chart-container {
+                align-items: center;
+                max-width: 100%; 
+                margin: 0 auto;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="chart-container">
+            {{ graph_html | safe }}
+        </div>
+        <a href="{{ url_for('stocks.index') }}">Home</a>
+    </body>
+
+{% endblock %}

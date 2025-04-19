@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Stock {% endblock %}
+
+{% block content %}
+    <h1>Create Stock</h1>
+    <form action="{{ url_for('stocks.create_stock_post') }}" method="POST">
+        <label for="symbol">Symbol:</label><br>
+        <input type="text" id="symbol" name="symbol"><br><br>
+        <label for="time_series">Time Series: </label><br>
+        <select id="time_series" name="time_series">
+            <option value="Intraday">Intraday</option>
+            <option value="Daily">Daily</option>
+            <option value="Weekly">Weekly</option>
+            <option value="Monthly">Monthly</option>
+        </select><br><br>
+        <label for="start_date">Start Date:</label><br>
+        <input type="date" id="start_date" name="start_date"><br><br>
+        <label for="end_date">End Date:</label><br>
+        <input type="date" id="end_date" name="end_date"><br><br>
+        <label for="chart_type">Chart Type:</label>
+        <select name="chart_type" id="chart_type">
+            <option value="Line">Line</option>
+            <option value="Bar">Bar</option>
+        </select>
+        <input type="submit" value="Submit">
+        
+    </form>
+
+{% endblock %}

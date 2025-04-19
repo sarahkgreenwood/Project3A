@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block title %}Stock List{% endblock %}
+
+{% block content %}
+    <h1>Stock List</h1>
+    <a href="{{ url_for('stocks.create_stock_get') }}">Create Stock</a>
+    <ul>
+        {% for stock in stocks %}
+            <li>
+                {{ stock.symbol }} - Time Series: {{ stock.time_series }} - Start Date: {{ stock.start_date.strftime('%Y-%m-%d') if stock.start_date else 'None' }}  - End Date: {{ stock.end_date.strftime('%Y-%m-%d') if stock.end_date else 'None' }}
+                <div>
+                    <a href="{{ url_for('stocks.update_stock_get', id=stock.id) }}">Update</a>
+                    <form action="{{ url_for('stocks.delete_stock', id=stock.id) }}" method="POST">
+                        <button type="submit">Delete</button>
+                    
+                    </form>
+                </div>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

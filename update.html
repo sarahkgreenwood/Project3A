@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %} Create Stock {% endblock %}
+
+{% block content %}
+    <h1>Create Stock</h1>
+    <form action="{{ url_for('stocks.update_stock_post', id=stock.id) }}" method="POST">
+        <label for="symbol">Symbol:</label><br>
+        <input type="text" id="symbol" name="symbol" value="{{ stock.symbol }}" ><br><br>
+        <label for="time_series">Time Series: </label><br> 
+        <select id="time_series" name="time_series">
+            <option value="Intraday" {% if stock.time_series == 'Intraday' %}selected{% endif %}>Intraday</option>
+            <option value="Daily" {% if stock.time_series == 'Daily' %}selected{% endif %}>Daily</option>
+            <option value="Weekly" {% if stock.time_series == 'Weekly' %}selected{% endif %}>Weekly</option>
+            <option value="Monthly" {% if stock.time_series == 'Monthly' %}selected{% endif %}>Monthly </option>
+        </select><br><br>
+        <label for="start_date">Start Date:</label><br>
+        <input type="date" id="start_date" name="start_date">
+        <label for="end_date">End Date:</label><br>
+        <input type="date" id="end_date" name="end_date"
+        value="{{ stock.end_date.strftime('%Y-%m-%d') if stock.end_date else '' }}"><br><br>
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}
